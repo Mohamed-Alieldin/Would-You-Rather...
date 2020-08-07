@@ -11,13 +11,19 @@ function QuestionDoor(props){
         const questionAuthor = users[questions[id].author]
 
         return(
-            <div>
-                <div>{questionAuthor.name} asks:</div>
+            <div className="section z-depth-1">
+                <div className="row col s3 center-align">
+                <h6>{questionAuthor.name} asks:</h6>
+                
                 <img src={questionAuthor.avatarURL} alt={`Avatar of ${questionAuthor.name}`} className="avatar"/>
+                
+                </div>
                 <div>
-                    <h4>Would You Rather</h4>
-                    <div>{questions[id].optionOne.text.substring(0, 10)}...</div>
+                    <h5>Would You Rather</h5>
+                    <p>{questions[id].optionOne.text.substring(0, 20)}...</p>
+                    
                     <Link className='btn' to={`/questions/${id}`} >View Poll</Link>
+                    
                 </div>
             </div>
         )

@@ -11,23 +11,48 @@ class AnsweredQuestion extends Component{
         const optionTwoVotes = questions[id].optionTwo.votes.length
         const totalVotes = optionOneVotes + optionTwoVotes
 
+        const userVote = users[authedUser].answers[id]
 
         return(
-            <div>
-                <h3>Asked By: {users[authorId].name}</h3>
-                <img src={users[authorId].avatarURL} alt={`Avatar of ${users[authorId].name}`} className="avatar"/>
-                <div>
-                    <h4>Results</h4>
-                    <div>
-                        Would You rather {questions[id].optionOne.text} <br/>
-                        Percentage: {(optionOneVotes*100/totalVotes).toFixed(2)}% <br/>
-                        {optionOneVotes} out of {totalVotes} {totalVotes ===1 && "vote"} {totalVotes>1 && "votes"}
+            <div className="row">
+                <div className="col s8 offset-s2 z-depth-5 center-align card horizontal">
+
+                <div className="card-image">
+                    <img src={users[authorId].avatarURL} alt={`Avatar of ${users[authorId].name}`} className="avatar2"/>
+                </div>
+                
+                <div className="card-stacked">
+                <span className="center-align">Asked By: <h3>{users[authorId].name}</h3></span>
+                
+                <div className="card-content left-align">
+                    <h6 className="center-align">Results</h6>
+                    <div className="section">
+                        <span style={{fontWeight: "bold"}}>Would you rather {questions[id].optionOne.text}?</span>
+                         {userVote==='optionOne' && <span className="new badge" data-badge-caption="your vote"></span>}
+                        <div className="row">
+                            <h5 className="col s10">{(optionOneVotes*100/totalVotes).toFixed(2)}%</h5>
+                            <h5 className="col s2 right-align">{optionOneVotes}/{totalVotes}</h5>
+                        
+                        <div className="progress">
+                        <div className="determinate" style={{width: (optionOneVotes*100/totalVotes).toFixed(2)+'%'}}></div>
+                        </div>                   
+                        </div>
                     </div>
-                    <div>
-                        Would You rather {questions[id].optionTwo.text}  <br/>
-                        Percentage: {(optionTwoVotes*100/totalVotes).toFixed(2)}%  <br/>
-                        {optionTwoVotes} out of {totalVotes} {totalVotes ===1 && "vote"} {totalVotes>1 && "votes"}
+
+                    <div className="section">
+                        <span style={{fontWeight: "bold"}}>Would you rather {questions[id].optionTwo.text}? </span>
+                        {userVote==='optionTwo' && <span className="new badge" data-badge-caption="your vote"></span>}
+                        <div className="row">
+                            <h5 className="col s10">{(optionTwoVotes*100/totalVotes).toFixed(2)}%</h5>
+                            <h5 className="col s2 right-align">{optionTwoVotes}/{totalVotes}</h5>
+                        
+                        <div className="progress">
+                        <div className="determinate" style={{width: (optionTwoVotes*100/totalVotes).toFixed(2)+'%'}}></div>
+                        </div>                   
+                        </div>
                     </div>
+                </div>
+                </div>
                 </div>
             </div>
         )

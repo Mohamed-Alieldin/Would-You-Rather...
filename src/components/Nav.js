@@ -1,4 +1,4 @@
-import React, {Component, Fragment} from 'react'
+import React, {Component} from 'react'
 import { NavLink, withRouter } from 'react-router-dom'
 import {connect} from 'react-redux'
 import {clearAuthedUser} from '../actions/authedUser'
@@ -15,12 +15,11 @@ class Nav extends Component{
         const{authedUser, users} = this.props
 
         return(
-          <Fragment>
-            <div>
-              <h1>React App</h1>
-            </div>
-            <nav className='nav'>
-            <ul>
+            <nav>
+              <div className="nav-wrapper">
+
+              
+            <ul className="left hide-on-med-and-down">
               <li>
                 <NavLink to='/' exact activeClassName='active'>
                   Home
@@ -28,7 +27,7 @@ class Nav extends Component{
               </li>
               <li>
                 <NavLink to='/add' activeClassName='active'>
-                  New Questions
+                  New Poll
                 </NavLink>
               </li>
               <li>
@@ -36,20 +35,21 @@ class Nav extends Component{
                   Leader Board
                 </NavLink>
               </li>
+              
               {authedUser !== '' &&
               <li>
-                  Hello, {users[authedUser].name}
+                  <a href="#" onClick={this.Logout}>Logout</a> 
               </li>
               }
 
               {authedUser !== '' &&
-              <li>
-                  <a href="#" onClick={this.Logout}>Sign Out</a> 
+              <li className="brand-logo right">
+                <a>Hello, {users[authedUser].name}</a>                  
               </li>
               }
             </ul>
+            </div>
           </nav>
-          </Fragment>
         )
     }
 }

@@ -18,7 +18,7 @@ class Home extends Component{
             preview:"unanswered"
         })
     }
-
+    
 
     render(){
         const {authedUser, users, questions} = this.props
@@ -27,16 +27,25 @@ class Home extends Component{
         const unAnsweredQuestions = Object.keys(questions)
             .filter((item) => !answeredQuestions.includes(item))
             .sort((a,b)=> questions[b].timestamp - questions[a].timestamp)
-
+        let answeredClass = this.state.preview ==='answered'? 'active':''
+        let unansweredClass = this.state.preview ==='unanswered'? 'active':''
         return(
-            <div>
-                <div>
-                    <h3 onClick={this.previewAnsweredQuestions}>Answered Questions</h3>
-                    <h3 onClick={this.previewUnAnsweredQuestions}>UnAnsweredQuestions</h3>
+            <div className="row center-align">
+                <div className="col s8 offset-s2 z-depth-5"> 
+                <ul className="tabs">
+                <li className="tab col s6" onClick={this.previewUnAnsweredQuestions} key="unanswered">
+                    <a className={unansweredClass} style={{fontWeight: "bold"}}>UnAnswered Questions</a></li>
+                <li className="tab col s6" onClick={this.previewAnsweredQuestions} key="answered">
+                    <a className={answeredClass} style={{fontWeight: "bold"}}>Answered Questions</a></li>
+
+                </ul>                   
+                    <div className="divider"></div>
+                    <div className="section">
                     {this.state.preview === "unanswered"?
                     <QuestionsList listQuestions={unAnsweredQuestions}/>:
                     <QuestionsList listQuestions ={answeredQuestions}/>
                     }
+                    </div>
                 </div>
             </div>
         )

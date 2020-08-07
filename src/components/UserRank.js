@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React from 'react'
 import {connect} from 'react-redux'
 
 
@@ -11,20 +11,32 @@ function UserRank (props){
 
 
         return(
-            <div>
-                {rank === 1 && <span>This is number One</span>}
-                {rank === 2 && <span>This is number Two</span>}
-                {rank === 3 && <span>This is number Three</span>}
-                
-                <h3>{users[id].name}</h3>
-                <img src={users[id].avatarURL} alt={`Avatar of ${users[id].name}`} className="avatar"/>
-                <div>
-                <div>Answered Questions { answeredQuestionsCount}</div>
-                <div>Created Questions { createdQuestionsCount}</div>
-                <div>Score: {score}</div>
+            <div className="card horizontal">
+
+                <div className="card-image">
+                <img src={users[id].avatarURL} alt={`Avatar of ${users[id].name}`} className="avatar2"/>
+
+                { rank === 1 && <i className="medium material-icons">looks_one</i>}
+                {rank === 2 && <i className="medium material-icons">looks_two</i>}
+                {rank === 3 && <i className="medium material-icons">looks_3</i>}
+                </div>
+                <div className="card-stacked">
+                <h4 style={{fontWeight: "bold"}}>{users[id].name}</h4>
+
+                <div className="card-content left-align">
+                    <h5>Answered Questions: { answeredQuestionsCount}</h5> 
+                    <h5>Created Questions: { createdQuestionsCount}</h5>
                 </div>
 
-            </div>
+                <div className="card-action">
+                    <div className="card-panel teal">
+                        <span className="white-text" style={{fontWeight: "bold", fontSize : 22}}>
+                        Score: {score}
+                        </span>
+                    </div>
+                    </div>
+                </div>  
+                </div>          
         )
     
 }

@@ -12,7 +12,8 @@ class LeaderBoard extends Component{
         )
 
         return(
-            <ul>
+            <div className="row">            
+            <ul className="col s6 offset-s3 z-depth-5 center-align">
                 {
                 orderedUsers.map((id)=>                    
                         <li key={id}>
@@ -21,6 +22,7 @@ class LeaderBoard extends Component{
                     )
                 }
             </ul>
+            </div>
         )
     }
 }

@@ -2,18 +2,18 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import UnAnsweredQuestion from './UnAnsweredQuestion'
 import AnsweredQuestion from './AnsweredQuestion'
+import {withRouter} from 'react-router-dom'
 
 class Question extends Component{
 
     render(){
-        const {authedUser, users, id} = this.props
+        const {authedUser, users,questions, id} = this.props
 
         let isAnswered = false
         if(Object.keys(users[authedUser].answers).includes(id)){
             isAnswered = true
         }
 
-        console.log("The Question Preview Props", this.props)
         return(
             <div>
                 {isAnswered && <AnsweredQuestion id={id}/>}
@@ -23,12 +23,12 @@ class Question extends Component{
     }
 }
 
-function mapStateToProps({authedUser, users}, props){
+function mapStateToProps({authedUser, users, questions}, props){
     const {id} = props.match.params
     return{
-        authedUser, users, id
+        authedUser, users,questions ,id
     }
 
 }
 
-export default connect(mapStateToProps)(Question)
+export default withRouter(connect(mapStateToProps)(Question))

@@ -49,13 +49,16 @@ class AddQuestion extends Component{
             return <Redirect to='/'/>
         }
         return(
-            <div>
-                <form>
+            <div className="row">
+                <div className="col s8 offset-s2 z-depth-5 center-align">
+                <form className="section">
                     <h3>Would You Rather...</h3>
                     <input value={this.state.optionOne} onChange={this.handleChangeOptionOne} placeholder="Enter Option One Text Here"/>
+                    <h6 className="center-align" style={{fontWeight: "bold"}}>OR</h6>
                     <input value={this.state.optionTwo} onChange={this.handleChangeOptionTwo} placeholder="Enter Option Two Text Here"/>
                     <button type='button' className='btn' onClick={this.AddQuestion}>Submit</button>
                 </form>
+                </div>
             </div>
         )
     }

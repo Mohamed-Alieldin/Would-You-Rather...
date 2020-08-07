@@ -1,7 +1,7 @@
 import React, { Component, Fragment }  from 'react';
 import {connect} from 'react-redux'
 import LoadingBar from 'react-redux-loading'
-import {BrowserRouter as Router , Route} from 'react-router-dom'
+import {BrowserRouter as Router , Route } from 'react-router-dom'
 
 import '../App.css';
 import {handleInitialData} from '../actions/shared'
@@ -24,7 +24,7 @@ render(){
     <Router>
     <Fragment>
     <LoadingBar/>
-    <div className="App">
+    <div >
       <Nav/>
       {loading === true ? null : 
         authorized === false ?
@@ -33,7 +33,6 @@ render(){
         </div>                
         : 
         <div>
-          
         <Route path="/" exact component={Home} />
         <Route path="/add" exact component={AddQuestion} />
         <Route path="/leaderboard" exact component={LeaderBoard} />
