@@ -3,11 +3,17 @@ import {connect} from 'react-redux'
 import UnAnsweredQuestion from './UnAnsweredQuestion'
 import AnsweredQuestion from './AnsweredQuestion'
 import {withRouter} from 'react-router-dom'
-
+import NotFound from './NotFound'
 class Question extends Component{
 
     render(){
         const {authedUser, users,questions, id} = this.props
+
+        
+        let isExist = false
+        if(Object.keys(questions).includes(id)){
+            isExist = true
+        }
 
         let isAnswered = false
         if(Object.keys(users[authedUser].answers).includes(id)){
@@ -16,8 +22,9 @@ class Question extends Component{
 
         return(
             <div>
-                {isAnswered && <AnsweredQuestion id={id}/>}
-                {!isAnswered && <UnAnsweredQuestion id={id}/>}
+                {!isExist && <NotFound/>}
+                {isExist&& isAnswered && <AnsweredQuestion id={id}/>}
+                {isExist&& !isAnswered && <UnAnsweredQuestion id={id}/>}
             </div>
         )
     }

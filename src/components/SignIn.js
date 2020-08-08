@@ -1,8 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {setAuthedUser} from '../actions/authedUser'
-import {withRouter} from 'react-router-dom'
-//import gamePic from '/images/game.png'
 
 class SignIn extends Component {
     state={
@@ -14,7 +12,6 @@ class SignIn extends Component {
         const id = this.state.id
         const {dispatch} = this.props
         dispatch(setAuthedUser(id))
-        this.props.history.push("/")
     }
 
     handleSelect = (e) =>{
@@ -68,5 +65,5 @@ function mapStateToProps({users}){
         users:users
     }
 }
-export default withRouter(connect(mapStateToProps)(SignIn))
+export default connect(mapStateToProps)(SignIn)
 
