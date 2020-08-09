@@ -1,7 +1,7 @@
 import React, { Component, Fragment }  from 'react';
 import {connect} from 'react-redux'
 import LoadingBar from 'react-redux-loading'
-import {BrowserRouter as Router , Route } from 'react-router-dom'
+import {BrowserRouter as Router , Route , Switch} from 'react-router-dom'
 
 import '../App.css';
 import {handleInitialData} from '../actions/shared'
@@ -11,6 +11,7 @@ import LeaderBoard from './LeaderBoard'
 import AddQuestion from './AddQuestion'
 import Question from './Question'
 import Nav from './Nav'
+import NotFound from './NotFound'
 
 class App extends Component {
   componentDidMount(){
@@ -33,10 +34,13 @@ render(){
         </div>                
         : 
         <div>
+          <Switch>
         <Route path="/" exact component={Home} />
         <Route path="/add" exact component={AddQuestion} />
         <Route path="/leaderboard" exact component={LeaderBoard} />
         <Route path="/questions/:id" exact component={Question} />
+        <Route  component={NotFound} />
+        </Switch>
         </div>
         }
     </div>
